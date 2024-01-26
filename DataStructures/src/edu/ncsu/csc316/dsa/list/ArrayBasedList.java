@@ -1,6 +1,7 @@
 package edu.ncsu.csc316.dsa.list;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -58,8 +59,8 @@ public class ArrayBasedList<E> extends AbstractList<E> {
     		throw new IndexOutOfBoundsException("Index out of bounds.");
     	}
     	ensureCapacity(index);
-    	for(int i = size - 1; i > index; i--) {
-    		data[i] = data[i-1];
+    	for(int i = size - 1; i >= index; i--) {
+    		data[i + 1] = data[i];
     	}
     	data[index] = value;
     	size++;
@@ -90,10 +91,14 @@ public class ArrayBasedList<E> extends AbstractList<E> {
      * @return returns the value removed.
      */
     public E remove(int index) {
-    	E temp = data[index];
-    	for(int i = size - 1; i > index; i--) {
-    		data[i - 1] = data[i];
+    	if(index < 0 || index > size) {
+    		throw new IndexOutOfBoundsException("Index out of bounds.");
     	}
+    	E temp = data[index];
+    	for(int i = index; i < size - 1; i++) {
+    		data[i] = data[i+1];
+    	}
+    	data[size - 1] = null;
     	size--;
     	return temp;
     }
@@ -118,8 +123,9 @@ public class ArrayBasedList<E> extends AbstractList<E> {
     	if(index  < 0 || index > size) {
     		throw new IndexOutOfBoundsException("Index out of bounds.");
     	}
+    	E temp = data[index];
     	data[index] = value;
-    	return data[index];
+    	return temp;
     }
     /**
      * Retrieves the size field.
@@ -163,5 +169,10 @@ public class ArrayBasedList<E> extends AbstractList<E> {
             removeOK = false;
         }
     }
+
+	@Override
+	public Iterator<E> iterator() {
+		return new ElementIterator();
+	}
     
 }

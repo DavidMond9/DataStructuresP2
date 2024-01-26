@@ -1,5 +1,8 @@
 package edu.ncsu.csc316.dsa.list;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * A singly-linked list is a linked-memory representation of the List abstract
  * data type. This list maintains a dummy/sentinel front node in the list to
@@ -76,8 +79,8 @@ public class SinglyLinkedList<E> extends AbstractList<E>{
     	return curr.getElement();
     	
     }
-    public Iterator<E> iterator(){
-    	
+    public Iterator<E> iterator() {
+    	return new ElementIterator();
     	
     }
     public E last() {
@@ -165,17 +168,22 @@ public class SinglyLinkedList<E> extends AbstractList<E>{
          * to the beginning of the list.
          */
         public ElementIterator() {
-            // TODO Your code here
+            current = front.next;
         }
 
         @Override
         public boolean hasNext() {
-            // TODO Your code here
+            return current != null;
         }
 
         @Override
         public E next() {
-            // TODO Your code here
+            if(!hasNext()) {
+            	throw new NoSuchElementException();
+            }
+            E res = current.element;
+            current = current.next;
+            return res;
         }
          
         @Override    
@@ -185,5 +193,4 @@ public class SinglyLinkedList<E> extends AbstractList<E>{
                 "This SinglyLinkedList implementation does not currently support removal of elements when using the iterator.");
         }
     }
-    
 }
