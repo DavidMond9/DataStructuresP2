@@ -1,6 +1,7 @@
 package edu.ncsu.csc316.dsa.list;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * An array-based list is a contiguous-memory representation of the List
@@ -138,21 +139,28 @@ public class ArrayBasedList<E> extends AbstractList<E> {
          */
         public ElementIterator() {
             position = 0;
+            removeOK = false;
         }
 
-        @Override
         public boolean hasNext() {
-            // TODO Your code here
+            return position < size;
         }
 
-        @Override
         public E next() {
-            // TODO Your code here
+            if(!hasNext()) {
+            	throw new NoSuchElementException("No such element.");
+            }
+            removeOK = true;
+            return data[position++];
         }
             
-        @Override
         public void remove() {
-            // TODO Your code here
+            if(!removeOK) {
+            	throw new IllegalStateException("Illegal State Exception");
+            }
+            ArrayBasedList.this.remove(position - 1);
+            position--;
+            removeOK = false;
         }
     }
     
