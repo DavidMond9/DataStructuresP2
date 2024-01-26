@@ -63,7 +63,15 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testAddLast() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+    	assertEquals(0, list.size());
+    	assertTrue(list.isEmpty());
+    	list.addLast("test1");
+    	assertEquals("test1", list.get(0));
+    	list.addLast("test2");
+    	assertEquals("test2", list.get(1));
+    	list.addLast("test3");
+    	assertEquals("test3", list.get(2));
     }
 
     /**
@@ -71,7 +79,10 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testLast() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+    	list.addFirst("test");
+    	list.addFirst("test1");
+    	assertEquals("test", list.last());
     }
 
     /**
@@ -79,7 +90,10 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testAddFirst() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+    	list.addFirst("test");
+    	list.addFirst("test1");
+    	assertEquals("test1", list.first());
     }
 
     /**
@@ -87,7 +101,11 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testFirst() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+    	list.addFirst("test");
+    	list.addFirst("test1");
+    	assertEquals("test1", list.first());
+    	assertEquals(list.size(), 2);
     }
 
     /**
@@ -134,8 +152,6 @@ public class ArrayBasedListTest {
         } catch(Exception e) {
             assertTrue(e instanceof NoSuchElementException);
         }
-
-        //TODO: continue this test case
     }
 
     /**
@@ -143,7 +159,15 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testRemoveIndex() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+        list.addFirst("1");
+        list.addLast("2");
+        list.addLast("3");
+        assertEquals(3, list.size());
+        list.remove(1);
+        assertEquals(2, list.size());
+        assertEquals("3", list.get(1));
+        assertEquals("1", list.get(0));
     }
 
     /**
@@ -151,7 +175,13 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testRemoveFirst() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+        list.addFirst("a");
+        list.addFirst("b");
+        list.addFirst("c");
+        assertEquals("c", list.removeFirst());
+        assertEquals("b", list.get(0));
+        assertEquals(2, list.size());
     }
 
     /**
@@ -159,7 +189,11 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testRemoveLast() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+        list.addFirst("a");
+        list.addFirst("b");
+        list.addFirst("c");
+        assertEquals("a", list.removeLast());
     }
 
     /**
@@ -167,6 +201,10 @@ public class ArrayBasedListTest {
      */
     @Test
     public void testSet() {
-        //TODO: complete this test case
+    	list = new ArrayBasedList<String>();
+        list.addFirst("a");
+        list.addFirst("b");
+        assertEquals("a", list.set(0, "c"));
+        assertEquals("c", list.get(0));
     }
 }

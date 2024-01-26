@@ -44,7 +44,6 @@ public class PositionalLinkedListTest {
         assertEquals(1, list.size());
         assertEquals(first, list.first());
         
-        //TODO: complete this test case
     }
     
     /**
@@ -52,7 +51,13 @@ public class PositionalLinkedListTest {
      */
     @Test
     public void testLast() {
-        //TODO: complete this test case
+    	assertEquals(0, list.size());
+        assertNull(list.last());
+        assertTrue(list.isEmpty());
+        
+        Position<String> pos = list.addLast("one");
+        assertEquals(1, list.size());
+        assertEquals(pos, list.last());
     }
     
     /**
@@ -63,10 +68,8 @@ public class PositionalLinkedListTest {
         assertEquals(0, list.size());
         assertTrue(list.isEmpty());
         Position<String> first = list.addFirst("one");
-        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
-        
-        //TODO: complete this test case
+        assertEquals(1, list.size());
     }
     
     /**
@@ -74,12 +77,13 @@ public class PositionalLinkedListTest {
      */ 
     @Test
     public void testAddLast() {
-        assertEquals(0, list.size());
+    	assertEquals(0, list.size());
         assertTrue(list.isEmpty());
-        Position<String> first = list.addLast("one");
+        list.addLast("one");
         assertEquals(1, list.size());
+        Position<String> last = list.addLast("nine");
+        assertEquals(last, list.last());
         
-        //TODO: complete this test case
     }
     
     /**
@@ -87,7 +91,11 @@ public class PositionalLinkedListTest {
      */ 
     @Test
     public void testBefore() {
-        //TODO: complete this test case
+    	assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+        Position<String> one = list.addLast("five");
+        Position<String> two = list.addFirst("ten");
+        assertEquals(one, list.before(two));
     }
     
     /**
@@ -95,7 +103,11 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testAfter() {
-        //TODO: complete this test case
+    	assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+        Position<String> one = list.addLast("one");
+        Position<String> two = list.addFirst("two");
+        assertEquals(one, list.after(two));
     }
     
     /**
@@ -103,7 +115,11 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testAddBefore() {
-        //TODO: complete this test case
+    	assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+        Position<String> one = list.addLast("one");
+        Position<String> two = list.addBefore(one, "two");
+        assertEquals(two, list.first());
     }
     
     /**
@@ -111,7 +127,11 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testAddAfter() {
-        //TODO: complete this test case
+    	assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+        Position<String> one = list.addLast("one");
+        Position<String> two = list.addAfter(one, "two");
+        assertEquals(two, list.last());
     }
     
     /**
@@ -119,7 +139,10 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testSet() {
-        //TODO: complete this test case
+    	Position<String> one = list.addLast("one");
+        Position<String> two = list.addAfter(one, "two");
+        list.set(two, "five");
+        assertEquals("five", two.getElement());
     }
     
     /**
@@ -127,7 +150,10 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testRemove() {
-        //TODO: complete this test case
+    	Position<String> last = list.addLast("one");
+        Position<String> first = list.addAfter(last, "two");
+        assertEquals(last, list.last());
+        assertEquals("two", list.remove(first));
     }
     
     /**
@@ -136,8 +162,46 @@ public class PositionalLinkedListTest {
      */     
     @Test
     public void testIterator() {
-        //TODO: complete this test case
+    	// Start with an empty list
+        assertEquals(0, list.size());
+        assertTrue(list.isEmpty());
+        
+        // Create an iterator for the empty list
+        Iterator<String> it = list.iterator();
+        
+        // Try different operations to make sure they work
+        // as expected for an empty list (at this point)
+        try{
+            it.remove();
+            fail("An IllegalStateException should have been thrown");           
+        } catch(Exception e) {
+            assertTrue(e instanceof IllegalStateException);
+        }
+        assertFalse(it.hasNext());
+
+        // Now add an element
+        list.addLast("one");
+        
+        // Use accessor methods to check that the list is correct
+        assertEquals(1, list.size());
+        assertFalse(list.isEmpty());
+        
+        // Create an iterator for the list that has 1 element
+        it = list.iterator();
+        
+        // Try different iterator operations to make sure they work
+        // as expected for a list that contains 1 element (at this point)
+        assertTrue(it.hasNext());
+        assertEquals("one", it.next());
+        assertFalse(it.hasNext());
+        try{
+            it.next();
+            fail("A NoSuchElementException should have been thrown");           
+        } catch(Exception e) {
+            assertTrue(e instanceof NoSuchElementException);
+        }
         // Use your ArrayBasedList and SinglyLinkedList test cases as a guide
+    	
     }
     
     /**
