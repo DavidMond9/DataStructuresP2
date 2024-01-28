@@ -94,7 +94,6 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	}
     	E removeEle = curr.getNext().getElement();
     	curr.setNext(curr.getNext().getNext());
-    	size--;
     	if(index == size) {
     		tail = curr;
     	}
