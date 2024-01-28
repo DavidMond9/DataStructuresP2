@@ -204,7 +204,7 @@ public class ArrayBasedListTest {
     	list = new ArrayBasedList<String>();
         list.addFirst("a");
         list.addFirst("b");
-        assertEquals("a", list.set(0, "c"));
+        assertEquals("b", list.set(0, "c"));
         assertEquals("c", list.get(0));
     }
 }

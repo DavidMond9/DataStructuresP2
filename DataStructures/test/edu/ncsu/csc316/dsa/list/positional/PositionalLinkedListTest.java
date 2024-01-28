@@ -95,7 +95,7 @@ public class PositionalLinkedListTest {
         assertTrue(list.isEmpty());
         Position<String> one = list.addLast("five");
         Position<String> two = list.addFirst("ten");
-        assertEquals(one, list.before(two));
+        assertEquals(two, list.before(one));
     }
     
     /**

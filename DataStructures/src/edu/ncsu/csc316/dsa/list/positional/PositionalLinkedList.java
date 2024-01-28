@@ -90,15 +90,20 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 		}
 	}
 
-	/** Validates the position and returns it as a node. */
-	private PositionalNode<E> validate(Position<E> p) throws IllegalArgumentException {
-		if (!(p instanceof PositionalNode))
-			throw new IllegalArgumentException("Invalid p");
-		PositionalNode<E> node = (PositionalNode<E>) p; // safe cast
-		if (node.getNext() == null) // convention for defunct node
-			throw new IllegalArgumentException("p is no longer in the list");
-		return node;
-	}
+	 /**
+     * Safely casts a Position, p, to be a PositionalNode.
+     * 
+     * @param p the position to cast to a PositionalNode
+     * @return a reference to the PositionalNode
+     * @throws IllegalArgumentException if p is null, or if p is not a valid
+     *                                  PositionalNode
+     */
+    private PositionalNode<E> validate(Position<E> p) {
+        if (p instanceof PositionalNode) {
+            return (PositionalNode<E>) p;
+        }
+        throw new IllegalArgumentException("Position is not a valid positional list node.");
+    }
 
 	/** Returns the given node as a Position (or null, if it is a sentinel). */
 	private Position<E> position(PositionalNode<E> node) {
@@ -119,12 +124,18 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	/** Returns the first Position in the linked list (or null, if empty). */
 	public Position<E> first() {
-		return position(tail.getNext());
+		if(front.next == tail) {
+			return null;
+		}
+		return front.getNext();
 	}
 
 	/** Returns the last Position in the linked list (or null, if empty). */
 	public Position<E> last() {
-		return position(tail.getPrevious());
+		if(tail.previous == front) {
+			return null;
+		}
+		return tail.getPrevious();
 	}
 
 	/**
@@ -132,7 +143,10 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 */
 	public Position<E> before(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
-		return position(node.getPrevious());
+		if(node.previous == front) {
+			return null;
+		}
+		return node.getPrevious();
 
 	}
 
@@ -141,13 +155,20 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 */
 	public Position<E> after(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
-		return position(node.getNext());
+		if(node.next == tail) {
+			return null;
+		}
+		return node.getNext();
 	}
 
-	private Position<E> addBetween(E e, PositionalNode<E> pred, PositionalNode<E> succ) {
-		PositionalNode<E> newest = new PositionalNode<>(e, pred, succ); // create and link a new node
-		pred.setNext(newest);
-		succ.setPrevious(newest);
+	private Position<E> addBetween(E element, PositionalNode<E> next, PositionalNode<E> prev) {
+		PositionalNode<E> newest = new PositionalNode<>(element);
+		PositionalNode<E> myP = validate(prev);
+		PositionalNode<E> myN = validate(next);
+		myP.next = newest;
+		newest.next = myN;
+		myN.previous = newest;
+		newest.previous = myP;
 		size++;
 		return newest;
 	}
@@ -157,7 +178,7 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 * Position.
 	 */
 	public Position<E> addFirst(E e) {
-		return addBetween(e, front, front.getNext()); // just after the header
+		return addBetween(e, front.next, front); // just after the header
 	}
 
 	/**
@@ -165,7 +186,7 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 * Position.
 	 */
 	public Position<E> addLast(E e) {
-		return addBetween(e, tail.getPrevious(), tail); // just before the trailer
+		return addBetween(e, tail, tail.previous); // just before the trailer
 	}
 
 	/**
@@ -174,7 +195,7 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 */
 	public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
-		return addBetween(e, node.getPrevious(), node);
+		return addBetween(e, node, node.previous);
 	}
 
 	/**
@@ -182,7 +203,7 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	 */
 	public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
-		return addBetween(e, node, node.getNext());
+		return addBetween(e, node.next, node);
 	}
 
 	/**

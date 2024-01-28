@@ -20,7 +20,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	 * The initial capacity of the list if the client does not provide a capacity
 	 * when constructing an instance of the array-based list
 	 **/
-	private final static int DEFAULT_CAPACITY = 0;
+	private final static int DEFAULT_CAPACITY = 16;
 
 	/** The array in which elements will be stored **/
 	private E[] data;
