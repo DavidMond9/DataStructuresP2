@@ -89,6 +89,18 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     public E remove(int index) {
     	checkIndex(index);
     	LinkedListNode<E> curr = front;
+    	// Special case for removing the first element
+        if (index == 0) {
+            E removeEle = front.getElement();
+            front = front.getNext();
+            size--;
+            // Update tail if the list is empty after removal
+            if (size == 0) {
+                tail = null;
+            }
+            return removeEle;
+        }
+        
     	for(int i = 0; i < index; i++) {
     		curr = curr.getNext();
     	}
