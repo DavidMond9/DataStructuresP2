@@ -2,7 +2,6 @@ package edu.ncsu.csc316.dsa.list;
 import static org.junit.Assert.*;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;

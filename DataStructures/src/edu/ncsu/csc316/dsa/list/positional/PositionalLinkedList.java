@@ -105,12 +105,6 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
         throw new IllegalArgumentException("Position is not a valid positional list node.");
     }
 
-	/** Returns the given node as a Position (or null, if it is a sentinel). */
-	private Position<E> position(PositionalNode<E> node) {
-		if (node == front || node == tail)
-			return null; // do not expose user to the sentinels
-		return node;
-	}
 
 	/** Returns the number of elements in the linked list. */
 	public int size() {
