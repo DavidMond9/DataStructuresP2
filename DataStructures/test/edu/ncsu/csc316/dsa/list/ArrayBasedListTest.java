@@ -132,7 +132,6 @@ public class ArrayBasedListTest {
 
         // Now add an element
         list.addLast("one");
-        
         // Use accessor methods to check that the list is correct
         assertEquals(1, list.size());
         assertFalse(list.isEmpty());
@@ -152,6 +151,7 @@ public class ArrayBasedListTest {
         } catch(Exception e) {
             assertTrue(e instanceof NoSuchElementException);
         }
+        it.remove();
     }
 
     /**

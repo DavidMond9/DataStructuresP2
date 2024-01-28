@@ -24,7 +24,8 @@ public class SinglyLinkedListTest {
     	assertTrue(list.isEmpty());
     	list.add(0, "5");
     	list.addLast("hi");
-    	assertEquals(list.last(), "hi");
+    	list.addLast("3");
+    	assertEquals(list.last(), "3");
     }
     @Test
     public void testAdd() {
@@ -33,7 +34,8 @@ public class SinglyLinkedListTest {
     	assertTrue(list.isEmpty());
     	list.add(0, "7");
     	list.addLast("new");
-    	assertEquals(list.get(1), "new");
+    	list.add(0, "5");
+    	assertEquals(list.get(0), "5");
     }
     @Test
     public void testRemove() {

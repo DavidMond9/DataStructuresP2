@@ -56,7 +56,7 @@ public class SinglyLinkedList<E> extends AbstractList<E>{
     }
     
     public void addLast(E element) {
-    	LinkedListNode<E> newNode = new LinkedListNode<>(element);
+    	LinkedListNode<E> newNode = new LinkedListNode<>(element, null);
     	if(size == 0) {
     		front.setNext(newNode);
     		tail = newNode;

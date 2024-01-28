@@ -201,7 +201,7 @@ public class PositionalLinkedListTest {
             assertTrue(e instanceof NoSuchElementException);
         }
         // Use your ArrayBasedList and SinglyLinkedList test cases as a guide
-    	
+    	it.remove();
     }
     
     /**
