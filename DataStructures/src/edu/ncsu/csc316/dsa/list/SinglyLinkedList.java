@@ -37,10 +37,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     }
     
     public void add(int index, E value) {
-    	if(index < 0 || index > size) {
-    		throw new IndexOutOfBoundsException("Index out of bounds.");
-    	}
-    	
+    	checkIndexForAdd(index);
     	if(index == size) {
     		addLast(value);
     	}
@@ -70,9 +67,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	
     }
     public E get(int index) {
-    	if(index < 0 || index >= size) {
-    		throw new IndexOutOfBoundsException("Index out of bounds exception.");
-    	}
+    	checkIndex(index);
     	LinkedListNode<E> curr = front.getNext();
     	for(int i = 0; i < index; i++) {
     		curr = curr.getNext();
@@ -92,9 +87,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	
     }
     public E remove(int index) {
-    	if(index < 0 || index >= size) {
-    		throw new IndexOutOfBoundsException("Index out of bounds exception.");
-    	}
+    	checkIndex(index);
     	LinkedListNode<E> curr = front;
     	for(int i = 0; i < index; i++) {
     		curr = curr.getNext();
@@ -109,9 +102,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	
     }
     public E set(int index, E value) {
-    	if(index < 0 || index >= size) {
-    		throw new IndexOutOfBoundsException("Index out of bounds exception.");
-    	}
+    	checkIndex(index);
     	LinkedListNode<E> curr = front.getNext();
     	for(int i = 0; i < index; i++) {
     		curr = curr.getNext();
