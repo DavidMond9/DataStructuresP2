@@ -108,17 +108,23 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
     }
 
 
-	/** Returns the number of elements in the linked list. */
+	/** Returns the number of elements in the linked list. 
+	 * @return returns the size of the list.
+	 * */
 	public int size() {
 		return size;
 	}
 
-	/** Tests whether the linked list is empty. */
+	/** Tests whether the linked list is empty. 
+	 * @return returns a boolean if the list is empty or not.
+	 * */
 	public boolean isEmpty() {
 		return size == 0;
 	}
 
-	/** Returns the first Position in the linked list (or null, if empty). */
+	/** Returns the first Position in the linked list (or null, if empty). 
+	 * @return returns the first element in the list.
+	 * */
 	public Position<E> first() {
 		if(front.next == tail) {
 			return null;
@@ -126,7 +132,9 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 		return front.getNext();
 	}
 
-	/** Returns the last Position in the linked list (or null, if empty). */
+	/** Returns the last Position in the linked list (or null, if empty). 
+	 * @return returns the last element in the list.
+	 * */
 	public Position<E> last() {
 		if(tail.previous == front) {
 			return null;
@@ -136,6 +144,8 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	/**
 	 * Returns the Position immediately before Position p (or null, if p is first).
+	 * @param p position of current node, validated.
+	 * @return returns the node that is before p
 	 */
 	public Position<E> before(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
@@ -148,6 +158,8 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	/**
 	 * Returns the Position immediately after Position p (or null, if p is last).
+	 * @param p position of current node, validated.
+	 * @return returns the node that is after p 
 	 */
 	public Position<E> after(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
@@ -172,22 +184,29 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	/**
 	 * Inserts element e at the front of the linked list and returns its new
 	 * Position.
+	 * @param e Element that is being added
+	 * @return Returns position of element being added first.
 	 */
 	public Position<E> addFirst(E e) {
-		return addBetween(e, front.next, front); // just after the header
+		return addBetween(e, front.next, front); 
 	}
 
 	/**
 	 * Inserts element e at the back of the linked list and returns its new
 	 * Position.
+	 * @param e Element that is being added
+	 * @return Returns position of element being added last.
 	 */
 	public Position<E> addLast(E e) {
-		return addBetween(e, tail, tail.previous); // just before the trailer
+		return addBetween(e, tail, tail.previous); 
 	}
 
 	/**
 	 * Inserts element e immediately before Position p, and returns its new
 	 * Position.
+	 * @param p Position of element being added
+	 * @param e Value of element being added
+	 * @return returns the position of the node after being validated
 	 */
 	public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
@@ -196,6 +215,9 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	/**
 	 * Inserts element e immediately after Position p, and returns its new Position.
+	 * @param p Position of element being added
+	 * @param e Value of element being added
+	 * @return returns the position of the node after being validated
 	 */
 	public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
@@ -204,6 +226,9 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	/**
 	 * Replaces the element stored at Position p and returns the replaced element.
+	 * @param p Position of element being set
+	 * @param e Value of element being set
+	 * @return returns the element of the old node that was set
 	 */
 	public E set(Position<E> p, E e) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
@@ -212,7 +237,10 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 		return answer;
 	}
 
-	/** Removes the element stored at Position p and returns it (invalidating p). */
+	/** Removes the element stored at Position p and returns it (invalidating p). 
+	 * @param p Position of element being removed
+	 * @return returns the element of the node removed.
+	 */
 	public E remove(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
 		node.previous.next = node.next;
@@ -232,6 +260,9 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	}
 
 	private class ElementIterator implements Iterator<E> {
+		/**
+		 * Iterator that works with the ElementIterator class.
+		 */
 		private Iterator<Position<E>> it;
 
 		public ElementIterator() {
@@ -256,8 +287,17 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 
 	private class PositionIterator implements Iterator<Position<E>> {
 
+		/**
+		 * Represents the current position for the PositionIterator.
+		 */
 		private Position<E> current;
+		/**
+		 * Represents the previous position for the PositionIterator.
+		 */
 		private Position<E> previous;
+		/**
+		 * Represents if you can remove something from the iterator.
+		 */
 		private boolean removeOK;
 
 		public PositionIterator() {
