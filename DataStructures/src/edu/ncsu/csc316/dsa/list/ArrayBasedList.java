@@ -56,7 +56,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	 * @param value the value to add
 	 */
 	public void add(int index, E value) {
-		checkIndex(index, size + 1);
+		checkIndexForAdd(index);
 		ensureCapacity(index);
 		for (int i = size - 1; i >= index; i--) {
 			data[i + 1] = data[i];
@@ -92,7 +92,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	 * @return returns the value removed.
 	 */
 	public E remove(int index) {
-		checkIndex(index, size);
+		checkIndex(index);
 		E temp = data[index];
 		for (int i = index; i < size - 1; i++) {
 			data[i] = data[i + 1];
@@ -109,7 +109,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	 * @return returns the value that was retrieved.
 	 */
 	public E get(int index) {
-		checkIndex(index, size);
+		checkIndex(index);
 		return data[index];
 	}
 
@@ -121,7 +121,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	 * @return returns the value that was set.
 	 */
 	public E set(int index, E value) {
-		checkIndex(index, size);
+		checkIndex(index);
 		E temp = data[index];
 		data[index] = value;
 		return temp;
@@ -136,11 +136,6 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 		return size;
 	}
 
-	/** Checks whether the given index is in the range [0, n−1]. */
-	protected void checkIndex(int i, int n) throws IndexOutOfBoundsException {
-		if (i < 0 || i >= n)
-			throw new IndexOutOfBoundsException("Illegal index: " + i);
-	}
 
 	private class ElementIterator implements Iterator<E> {
 		private int position;

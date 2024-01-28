@@ -35,11 +35,11 @@ public class ArrayBasedListTest {
     public void testAddIndex() {
         assertEquals(0, list.size());
         assertTrue(list.isEmpty());
-
         list.add(0, "one");
         assertEquals(1, list.size());
         assertEquals("one", list.get(0));
         assertFalse(list.isEmpty());
+        
         
         // Use the statements above to help guide your test cases
         // for data structures: Start with an empty data structure, then
