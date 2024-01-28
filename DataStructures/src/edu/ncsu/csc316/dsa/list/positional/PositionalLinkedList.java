@@ -97,8 +97,7 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
      * 
      * @param p the position to cast to a PositionalNode
      * @return a reference to the PositionalNode
-     * @throws IllegalArgumentException if p is null, or if p is not a valid
-     *                                  PositionalNode
+     * @throws IllegalArgumentException if p is null, or if p is not a valid PositionalNode
      */
     private PositionalNode<E> validate(Position<E> p) {
         if (p instanceof PositionalNode) {

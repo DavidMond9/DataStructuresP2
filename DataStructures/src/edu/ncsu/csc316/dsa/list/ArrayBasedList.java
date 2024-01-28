@@ -86,8 +86,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	}
 
 	/**
-	 * Removes a value from the array based list at a specific index.
-	 * 
+	 * Removes a value from the array based list at a specific index. 
 	 * @param index Index to remove value from.
 	 * @return returns the value removed.
 	 */
@@ -103,8 +102,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	}
 
 	/**
-	 * Gets a value from the array at a specific index.
-	 * 
+	 * Gets a value from the array at a specific index. 
 	 * @param index Index to get value from.
 	 * @return returns the value that was retrieved.
 	 */
@@ -114,8 +112,7 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 	}
 
 	/**
-	 * Sets a value to the array at a specific index.
-	 * 
+	 * Sets a value to the array at a specific index. 
 	 * @param index Index to set value to.
 	 * @param value Value to set at the specific index.
 	 * @return returns the value that was set.
@@ -129,7 +126,6 @@ public class ArrayBasedList<E> extends AbstractList<E> {
 
 	/**
 	 * Retrieves the size field.
-	 * 
 	 * @return returns the size of array.
 	 */
 	public int size() {
