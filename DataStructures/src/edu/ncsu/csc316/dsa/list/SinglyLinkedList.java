@@ -36,6 +36,11 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
         size = 0;
     }
     
+    /**
+     * Adds a node to the list.
+     * @param index index to add
+     * @param value value of the node
+     */
     public void add(int index, E value) {
     	checkIndexForAdd(index);
     	if(index == size) {
@@ -51,7 +56,10 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	}
     	
     }
-    
+    /**
+     * Adds a node to the end of the list.
+     * @param element value of the node.
+     */
     public void addLast(E element) {
     	LinkedListNode<E> newNode = new LinkedListNode<>(element, null);
     	newNode = new LinkedListNode<>(element);
@@ -66,6 +74,11 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	size++;
     	
     }
+    /**
+     * Gets the element of the node at a certain index.
+     * @param index index to get value from.
+     * @return returns the element of the node 
+     */
     public E get(int index) {
     	checkIndex(index);
     	LinkedListNode<E> curr = front.getNext();
@@ -75,10 +88,18 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	return curr.getElement();
     	
     }
+    /**
+     * Creates an iterator for the nodes.
+     * @return returns an iterator of type ElementIterator.
+     */
     public Iterator<E> iterator() {
     	return new ElementIterator();
     	
     }
+    /**
+     * Gets the last element in the list.
+     * @return returns the element at the end of the list.
+     */
     public E last() {
     	if (isEmpty()) {
     		throw new IndexOutOfBoundsException("The list is empty");
@@ -86,6 +107,11 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	return tail.getElement();
     	
     }
+    /**
+     * Removes a node from the list at a specific index.
+     * @param index index to remove from.
+     * @return returns the removed value.
+     */
     public E remove(int index) {
     	checkIndex(index);
     	LinkedListNode<E> curr = front;
@@ -102,6 +128,12 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	return removeEle;
     	
     }
+    /**
+     * Sets a value at a specific index for the node.
+     * @param index index to set
+     * @param value value of the node that is being set.
+     * @return E returns the old value before it was set.
+     */
     public E set(int index, E value) {
     	checkIndex(index);
     	LinkedListNode<E> curr = front.getNext();
@@ -112,6 +144,10 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	curr.setElement(value);
     	return oldVal;
     }
+    /**
+     * Gets the size of the list.
+     * @return returns the size of the list.
+     */
     public int size() {
     	return size;
     }
@@ -120,8 +156,9 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     
     
     private static class LinkedListNode<E> {
-        
+        /** Value of the node */
         private E element;
+        /** Next node */
         private LinkedListNode<E> next;
         
         public LinkedListNode(E ele) {

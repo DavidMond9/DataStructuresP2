@@ -45,9 +45,11 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	}
 
 	private static class PositionalNode<E> implements Position<E> {
-
+		/** Element of the current position. */
 		private E element;
+		/** Position of the node that comes after */
 		private PositionalNode<E> next;
+		/** Position of the node that came before */
 		private PositionalNode<E> previous;
 
 		public PositionalNode(E value) {
