@@ -80,9 +80,9 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	
     }
     public E last() {
-    	if(size == 0) {
-    		return null;
-    	}
+    	if (isEmpty()) {
+    		throw new IndexOutOfBoundsException("The list is empty");
+        }
     	return tail.getElement();
     	
     }
