@@ -98,6 +98,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
     	if(index == size) {
     		tail = curr;
     	}
+    	size--;
     	return removeEle;
     	
     }
@@ -124,7 +125,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> {
         private LinkedListNode<E> next;
         
         public LinkedListNode(E ele) {
-        	element = ele;
+        	this(ele, null);
         	
         }
         public LinkedListNode(E ele, LinkedListNode<E> next) {
