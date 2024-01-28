@@ -219,16 +219,10 @@ public class PositionalLinkedList<E> implements PositionalList<E> {
 	/** Removes the element stored at Position p and returns it (invalidating p). */
 	public E remove(Position<E> p) throws IllegalArgumentException {
 		PositionalNode<E> node = validate(p);
-		PositionalNode<E> predecessor = node.getPrevious();
-		PositionalNode<E> successor = node.getNext();
-		predecessor.setNext(successor);
-		successor.setPrevious(predecessor);
+		node.previous.next = node.next;
+		node.next.previous = node.previous;
 		size--;
-		E answer = node.getElement();
-		node.setElement(null); // help with garbage collection
-		node.setNext(null); // and convention for defunct node
-		node.setPrevious(null);
-		return answer;
+		return node.getElement();
 	}
 
 	@Override

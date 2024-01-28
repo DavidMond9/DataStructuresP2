@@ -152,7 +152,7 @@ public class PositionalLinkedListTest {
     public void testRemove() {
     	Position<String> last = list.addLast("one");
         Position<String> first = list.addAfter(last, "two");
-        assertEquals(last, list.last());
+        assertEquals(first, list.last());
         assertEquals("two", list.remove(first));
     }
     
